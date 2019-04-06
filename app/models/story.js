@@ -13,7 +13,7 @@ const storySchema = new Schema({
     },
     user: {
         type: Schema.Types.ObjectId,
-        ref: "User"
+        ref: 'User'
     },
     createdDate: {
         type: Date,
@@ -43,6 +43,7 @@ const storySchema = new Schema({
                 type: String
             },
             count: {
+                type: String,
                 maxlength: 5
             }
         }
