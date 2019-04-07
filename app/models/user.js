@@ -1,6 +1,7 @@
 const mongoose = require("mongoose")
 const validator = require("validator")
 const bcryptjs = require("bcryptjs")
+const jwt = require("jsonwebtoken")
 const Schema = mongoose.Schema
 
 const userSchema = new Schema({
@@ -44,6 +45,17 @@ const userSchema = new Schema({
     ],
     clappedStories: [
 
+    ],
+    tokens: [
+        {
+            token: {
+                type: String
+            },
+            createdAt: {
+                type: Date,
+                default: Date.now
+            }
+        }
     ]
 })
 
@@ -87,6 +99,54 @@ userSchema.statics.findByCredentials = function(email, password){
                                 return Promise.reject(result)
                             }
                         })
+            })
+            .catch(function(err){
+                return Promise.reject(err)
+            })
+}
+
+userSchema.statics.findByToken = function(token){
+    // in static method the "this" refers to "User" model 
+    const User = this
+    let tokenData 
+
+    try{
+        tokenData = jwt.verify(token, "jwt@123")
+    }catch(err){
+        return Promise.reject(err)
+    }
+
+    // here findOne is a conditional check, if the id in db == tokendata.id
+    // here the token is provided by user that is decoded using verify
+    // that contains an "id", "username", "createdAt" props .
+    // in that we are checking the "_id" of "User" model == tokenData._id
+    return User.findOne({
+            "_id": tokenData._id,
+            "tokens.token": token
+        })
+}
+
+userSchema.methods.generateToken = function(){
+    // in instance methods "this" referes to "user" obj defnd in controller.
+    // the "user" obj is defnd in the "then" part 
+    // in static methods "this" referes to "User" model.
+    const user = this
+    const tokenData = {
+        "_id": user._id,
+        "username": user.username,
+        "createdAt": Number(new Date())
+    }
+
+    const token = jwt.sign(tokenData, "jwt@123")
+
+    user.tokens.push({
+        // ES-6 concise prop can be used
+        token: token
+    })
+    
+    return user.save()
+            .then(function(user){
+                return Promise.resolve(token)
             })
             .catch(function(err){
                 return Promise.reject(err)
