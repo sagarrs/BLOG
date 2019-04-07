@@ -117,7 +117,7 @@ userSchema.statics.findByToken = function(token){
     }
 
     // here findOne is a conditional check, if the id in db == tokendata.id
-    // here the token is provided by user that is decoded using verify
+    // here the token is provided by "user" that is decoded using verify
     // that contains an "id", "username", "createdAt" props .
     // in that we are checking the "_id" of "User" model == tokenData._id
     return User.findOne({

@@ -13,6 +13,10 @@ const authenticateUser = function(req, res, next){
                 if(user){
                     req.user = user
                     req.token = token
+                    // next is used coz we can't send anything to frontend directly
+                    // from here coz there might be some logic that needs to be 
+                    // executed in controller after this, hence we provide the control
+                    // back to route in controller in this case "accounts" using next()
                     next()
                 }else{
                     res.status("404").send({notice: "token not available"})

@@ -23,6 +23,8 @@ router.post("/login", (req, res) => {
 
     User.findByCredentials(body.email, body.password)
         .then((user) => {
+            // once we know that the email, pwd are correct we need to generate token
+            // return is here coz to avoid nested promises
             return user.generateToken()
         })
         .then((token) => {
