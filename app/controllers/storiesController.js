@@ -2,7 +2,7 @@ const express = require("express")
 const router = express.Router()
 
 const {Story} = require("../models/story")
-const {User} = require("../models/user")
+const {authenticateUser} = require("../middlewares/authenticate")
 
 router.get("/", (req, res) => {
     Story.find()
@@ -14,11 +14,12 @@ router.get("/", (req, res) => {
         })
 })
 
-router.post("/", (req, res) => {
+router.post("/", authenticateUser, (req, res) => {
     const body = req.body
     const story = new Story(body)
-
     console.log(story)
+
+    story.user = req.user._id
 
     story.save()
         .then((story) => {
