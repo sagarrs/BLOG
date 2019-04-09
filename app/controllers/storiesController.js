@@ -30,6 +30,43 @@ router.post("/", authenticateUser, (req, res) => {
         })
 })
 
+router.get("/:id", (req, res) => {
+    const id = req.params.id
+
+    Story.find({_id: id})
+        .then((contact) => {
+            res.status("200").send(contact)
+        })
+        .catch((err) => {
+            res.status("404").send(err)
+        })
+})
+
+router.delete("/:id", (req, res) => {
+    const id = req.params.id
+
+    Story.findByIdAndDelete({_id: id})
+        .then((contact) => {
+            res.status("200").send(contact)
+        })
+        .catch((err) => {
+            res.status("404").send(err)
+        })
+})
+
+router.put("/:id", (req, res) => {
+    const id = req.params.id
+    const body = req.body
+
+    Story.findByIdAndUpdate({_id: id}, { $set : body}, { new: true, runValidators: true})
+        .then((contact) => {
+            res.status("200").send(contact)
+        })
+        .catch((err) => {
+            res.status("404").send(err)
+        })
+})
+
 module.exports = {
     storyRouter: router
 }
