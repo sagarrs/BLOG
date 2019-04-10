@@ -33,12 +33,29 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import {BrowserRouter, Route, Link, Switch} from 'react-router-dom'
+import Home from "./components/layout/Home"
+import Story from "./components/stories/Story"
+
+import Register from "./components/authentication/Register"
+import Login from "./components/authentication/Login"
+
 class App extends Component {
   render() {
     return (
-      <div>
-          <h1>Welcome to the Blog</h1>
-      </div>
+      <BrowserRouter>
+        <div>
+          <Link to="/register">Register</Link>
+          <Link to="/login">Login</Link>
+
+          <Switch>
+            <Route path="/" component={Home} exact={true}/>
+            <Route path="/stories" component={Story} exact={true}/>
+            <Route path="/register" component={Register} exact={true}/>
+            <Route path="/login" component={Login} exact={true}/>
+          </Switch>
+        </div>
+      </BrowserRouter>
     );
   }
 }
