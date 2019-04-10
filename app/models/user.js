@@ -32,7 +32,7 @@ const userSchema = new Schema({
         maxlength: 128
     },
     stories: [
-
+        
     ],
     bookmarks: [
 
@@ -96,7 +96,7 @@ userSchema.statics.findByCredentials = function(email, password){
                             if(result){
                                 return Promise.resolve(user)
                             }else{
-                                return Promise.reject(result)
+                                return Promise.reject({notice: "invalid password"})
                             }
                         })
             })

@@ -50,6 +50,24 @@ const storySchema = new Schema({
     ]
 })
 
+// storySchema.post("save", function(next){
+//     const story = this
+    
+//     console.log("this is post save")
+//     console.log(story._id)
+
+//     User.update({
+//         _id: story.user
+//     }, {
+//         $push: {
+//             stories: story._id
+//         }
+//     }).exec(function(err, user){
+//         console.log("stories added");
+//     })
+
+// })
+
 const Story = mongoose.model("Story", storySchema)
 
 module.exports = {

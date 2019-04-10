@@ -4,6 +4,28 @@ const router = express.Router()
 const {User} = require("../models/user")
 const {authenticateUser} = require("../middlewares/authenticate")
 
+router.get("/", (req, res) => {
+    User.find()
+        .then((user) => {
+            res.status("200").send(user)
+        })
+        .catch((err) => {
+            res.status("404").send(err)
+        })
+})
+
+router.get("/:id", (req, res) => {
+    const id = req.params.id
+
+    User.find({_id: id})
+        .then((user) => {
+            res.status("200").send(user)
+        })
+        .catch((err) => {
+            res.status("404").send(err)
+        })
+})
+
 router.post("/register", (req, res) => {
     const body = req.body
 
@@ -11,7 +33,7 @@ router.post("/register", (req, res) => {
 
     user.save()
         .then((user) => {
-            res.status("404").send(user)
+            res.status("200").send(user)
         })
         .catch((err) => {
             res.status("401").send(err)
@@ -28,10 +50,12 @@ router.post("/login", (req, res) => {
             return user.generateToken()
         })
         .then((token) => {
-            res.status("200").setHeader("x-auth", token).send({})
+            // res.send(token)
+            //  res.setHeader("x-auth", token).send({})
+             res.send({token})
         })
         .catch((err) => {
-            res.status("404").send(err)
+            res.status("401").send(err)
         })
 })
 
