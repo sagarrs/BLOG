@@ -28,21 +28,24 @@ router.post("/", authenticateUser, (req, res) => {
 
     story.save()
         .then((story) => {
-            req.user.stories.push(
-                story._id
-            )
-            // User.update({
-            //     _id: req.user._id
-            // }, {
-            //     $push: {
-            //         stories: story._id
-            //     }
-            // }).exec(function(err, user){
-            //     console.log("foo_bar is added to the list of your followers");
-            // })
+            console.log("story")
+            console.log(story)
+
+            // storing stories id in user schema
+            User.update({
+                _id: req.user._id
+            }, {
+                $push: {
+                    stories: story._id
+                }
+            }).exec(function(err, user){
+                console.log("foo_bar is added to the list of your followers");
+            })
             res.status("200").send(story)
         })
         .catch((err) => {
+            console.log("err")
+            console.log(err)
             res.status("404").send(err)
         })
 })

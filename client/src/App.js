@@ -36,6 +36,7 @@ import './App.css';
 import {BrowserRouter, Route, Link, Switch} from 'react-router-dom'
 import Home from "./components/layout/Home"
 import Story from "./components/stories/Story"
+import NewStory from "./components/stories/NewStory"
 
 import Register from "./components/authentication/Register"
 import Login from "./components/authentication/Login"
@@ -53,6 +54,7 @@ class App extends Component {
             <Route path="/stories" component={Story} exact={true}/>
             <Route path="/register" component={Register} exact={true}/>
             <Route path="/login" component={Login} exact={true}/>
+            <Route path="/stories/new" component={NewStory} exact={true} />
           </Switch>
         </div>
       </BrowserRouter>

@@ -1,12 +1,14 @@
 import React from 'react'
 import axios from 'axios'
+import {Redirect} from 'react-router-dom'
 
 class Login extends React.Component{
     constructor(){
         super()
         this.state = {
             email: "",
-            password: ""
+            password: "",
+            redirect: false
         }
     }
 
@@ -33,8 +35,12 @@ class Login extends React.Component{
         }
 
         axios.post("http://localhost:3005/users/login", formData)
-            .then((user) => {
-                console.log("success", user)
+            .then((response) => {
+                console.log("success", response)
+                localStorage.setItem("token", response.data.token)
+                this.setState(() => ({
+                    redirect: true
+                }))
             })
             .catch((err) => {
                 console.log("Login Error",err)
@@ -42,6 +48,9 @@ class Login extends React.Component{
     }
 
     render(){
+        if(this.state.redirect){
+            return <Redirect to="/stories" />
+        }
         return(
             <div>
                 <h1>Login here</h1>

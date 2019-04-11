@@ -55,7 +55,7 @@ router.post("/login", (req, res) => {
              res.send({token})
         })
         .catch((err) => {
-            res.status("401").send(err)
+            res.status("404").send(err)
         })
 })
 
