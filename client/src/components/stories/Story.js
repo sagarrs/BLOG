@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import {Link} from 'react-router-dom'
 
 class Story extends React.Component{
     constructor(){
@@ -25,16 +26,24 @@ class Story extends React.Component{
     render(){
         return(
             <div>
-                <h1>This is My Story</h1>
-                <ul>
-                    {
-                        this.state.stories.map((story) => {
-                            return(
-                                <li key={story._id}>{story.body}</li>
-                            )
-                        })
-                    }
-                </ul>
+
+                {
+                    this.state.stories.length == 0 ? (<h2>No Stories found</h2>) : (
+                        <div>
+                            <h1>This is My Story</h1>
+                            <ul>
+                                {
+                                    this.state.stories.map((story) => {
+                                        return(
+                                            <li key={story._id}>{story.body}</li>
+                                        )
+                                    })
+                                }
+                            </ul>
+                        </div> 
+                    )
+                }
+                <Link to="/stories/new">Add new Story</Link>
             </div>
         )
     }

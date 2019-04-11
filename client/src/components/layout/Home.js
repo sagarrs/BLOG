@@ -3,8 +3,8 @@ import React from 'react'
 class Home extends React.Component{
     render(){
         return(
-            <div>
-                <h1>Welcome To The Blog App</h1>
+            <div className="container">
+                <h1>Medium Clone</h1>
             </div>
         )
     }
