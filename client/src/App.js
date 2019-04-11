@@ -45,9 +45,11 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div>
-          <Link to="/register">Register</Link>
-          <Link to="/login">Login</Link>
+        <div className="container">
+            <div className="float-right">
+              <Link className="login-reg" to="/register">Register</Link> &nbsp;   
+              <Link className="login-reg" to="/login">Login</Link>
+            </div>
 
           <Switch>
             <Route path="/" component={Home} exact={true}/>
