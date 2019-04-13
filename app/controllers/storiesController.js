@@ -69,7 +69,7 @@ router.delete("/:id", (req, res) => {
 
     Story.findByIdAndDelete({_id: id})
         .then((contact) => {
-            res.status("200").send(contact)
+            res.status("200").send({notice: "story successfully deleted"})
         })
         .catch((err) => {
             res.status("404").send(err)

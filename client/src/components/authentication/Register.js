@@ -44,6 +44,7 @@ class Register extends React.Component{
         axios.post("http://localhost:3005/users/register", formData)
             .then((user) => {
                 console.log("Success", user)
+                this.props.history.push("/login")
                 this.setState(() => ({
                     username: "", email: "", password: ""
                 }))

@@ -32,14 +32,11 @@ class Form extends React.Component{
             body: this.state.body
         }
 
-        axios.post("http://localhost:3005/stories", formData)
-            .then((response) => {
-                console.log("success")
-                console.log(response.data)
-            })
-            .catch((err) => {
-                console.log("smasye ide", err)
-            })
+        // the handle submit of new story is in "this.props" coz we r passing as
+        // "props" from new story "<Form handleSubmit={this.handleSubmit}/>"
+        // here we r passing "formData as args for handleSubmit" which calls the
+        // handleSubmit in the new story
+        this.props.handleSubmit(formData)
     }
 
     render(){

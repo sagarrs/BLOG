@@ -41,6 +41,8 @@ import NewStory from "./components/stories/NewStory"
 import Register from "./components/authentication/Register"
 import Login from "./components/authentication/Login"
 
+import ShowStory from "./components/stories/ShowStory"
+
 class App extends Component {
   render() {
     return (
@@ -57,6 +59,8 @@ class App extends Component {
             <Route path="/register" component={Register} exact={true}/>
             <Route path="/login" component={Login} exact={true}/>
             <Route path="/stories/new" component={NewStory} exact={true} />
+
+            <Route path="/stories/:id" component={ShowStory} exact={true} />
           </Switch>
         </div>
       </BrowserRouter>

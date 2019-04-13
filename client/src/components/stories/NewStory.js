@@ -1,12 +1,34 @@
 import React from 'react'
 import Form from './Form'
+import axios from 'axios'
 
 class NewStory extends React.Component{
+    constructor(){
+        super()
+        this.state = {
+
+        }
+    }
+
+    handleSubmit = (formData) => {
+
+        axios.post("http://localhost:3005/stories", formData)
+        .then((response) => {
+            console.log("success")
+            console.log(response.data)
+            this.props.history.push("/stories")
+        })
+        .catch((err) => {
+            console.log("smasye ide", err)
+        })
+
+    }   
+
     render(){
         return(
             <div>
                 <h1>New Stories</h1>
-                <Form/>
+                <Form handleSubmit={this.handleSubmit}/>
             </div>
         )
     }

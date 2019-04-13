@@ -13,7 +13,6 @@ class Story extends React.Component{
     componentDidMount(){
         axios.get("http://localhost:3005/stories")
             .then((story) => {
-                console.log(story.data)
                 this.setState(() =>( {
                     stories: story.data
                 }))
@@ -35,7 +34,7 @@ class Story extends React.Component{
                                 {
                                     this.state.stories.map((story) => {
                                         return(
-                                            <li key={story._id}>{story.body}</li>
+                                            <li key={story._id}><Link to={`/stories/${story._id}`}>{story.body}</Link></li>
                                         )
                                     })
                                 }
