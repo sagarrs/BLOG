@@ -87,7 +87,7 @@ userSchema.statics.findByCredentials = function(email, password){
     const User = this
 
     return User.findOne({email})
-            .then(function(user){
+            .then(function(user){          
                 if(!user){
                     return Promise.reject({notice: "invalid email"})
                 }
@@ -143,7 +143,7 @@ userSchema.methods.generateToken = function(){
         // ES-6 concise prop can be used
         token: token
     })
-    
+
     return user.save()
             .then(function(user){
                 return Promise.resolve(token)
