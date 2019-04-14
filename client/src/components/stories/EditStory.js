@@ -7,7 +7,7 @@ class EditStory extends React.Component{
         super()
         this.state = {
             story: {},
-            isLoaded: false
+            // isLoaded: false
         }
     }
 
@@ -39,9 +39,10 @@ class EditStory extends React.Component{
         return(
             <div>
                 <h3>Edit</h3>
-                {
+                {/* {
                     this.state.isLoaded && <Form story={this.state.story} handleSubmit={this.handleSubmit}/>
-                }
+                } */}
+                <Form story={this.state.story} handleSubmit={this.handleSubmit}/>
             </div>
         )
     }
