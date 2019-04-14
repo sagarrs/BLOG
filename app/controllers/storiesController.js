@@ -53,7 +53,7 @@ router.post("/", authenticateUser, (req, res) => {
 router.get("/:id", (req, res) => {
     const id = req.params.id
 
-    Story.find({_id: id})
+    Story.findOne({_id: id})
         // .populate('user')
         .then((story) => {
             res.status("200").send(story)
@@ -80,7 +80,7 @@ router.put("/:id", (req, res) => {
     const id = req.params.id
     const body = req.body
 
-    Story.findByIdAndUpdate({_id: id}, { $set : body}, { new: true, runValidators: true})
+    Story.findOneAndUpdate({_id: id}, { $set : body}, { new: true, runValidators: true})
         .then((contact) => {
             res.status("200").send(contact)
         })

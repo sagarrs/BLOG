@@ -2,11 +2,12 @@ import React from 'react'
 import axios from 'axios'
 
 class Form extends React.Component{
-    constructor(){
-        super()
+    constructor(props){
+        // console.log(props.story)
+        super(props)
         this.state = {
-            title: "",
-            body: ""
+            title: props.story ? props.story.title : "",
+            body: props.story ? props.story.body : ""
         }
     }
 
