@@ -42,6 +42,7 @@ import Register from "./components/authentication/Register"
 import Login from "./components/authentication/Login"
 
 import ShowStory from "./components/stories/ShowStory"
+import EditStory from "./components/stories/EditStory"
 
 class App extends Component {
   render() {
@@ -59,8 +60,9 @@ class App extends Component {
             <Route path="/register" component={Register} exact={true}/>
             <Route path="/login" component={Login} exact={true}/>
             <Route path="/stories/new" component={NewStory} exact={true} />
-
+            <Route path="/stories/edit/:id" component={EditStory} exact={true} />
             <Route path="/stories/:id" component={ShowStory} exact={true} />
+        
           </Switch>
         </div>
       </BrowserRouter>
