@@ -6,8 +6,12 @@ class Form extends React.Component{
         // console.log(props.story)
         super(props)
         this.state = {
-            title: props.story ? props.story.title : "",
-            body: props.story ? props.story.body : ""
+            // the below is not needed coz we r using "componentWillReceiveProps"
+            // it'll be needed only if we make use of isLoaded in "edit.js"
+            // title: props.story ? props.story.title : "",
+            // body: props.story ? props.story.body : ""
+            title: "",
+            body: ""
         }
     }
 
@@ -22,6 +26,14 @@ class Form extends React.Component{
         const body = e.target.value
         this.setState(() => ({
             body
+        }))
+    } 
+
+    componentWillReceiveProps(nextProps){
+        console.log("nextProps", nextProps)
+        this.setState(() => ({
+            title: nextProps.story.title,
+            body: nextProps.story.body
         }))
     }
 
