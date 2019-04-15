@@ -3,26 +3,35 @@ import axios from 'axios'
 import {Redirect} from 'react-router-dom'
 
 class Login extends React.Component{
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
         this.state = {
             email: "",
             password: "",
+            notice: "",
             redirect: false
         }
     }
 
-    handleEmail = (e) => {
-        const email = e.target.value
-        this.setState(() => ({
-            email
-        }))
-    }
+    // handleEmail = (e) => {
+    //     const email = e.target.value
+    //     this.setState(() => ({
+    //         email
+    //     }))
+    // }
 
-    handlePassword = (e) => {
-        const password = e.target.value
+    // handlePassword = (e) => {
+    //     const password = e.target.value
+    //     this.setState(() => ({
+    //         password
+    //     }))
+    // }
+
+    handleChange = (e) => {
+        e.persist()
+
         this.setState(() => ({
-            password
+            [e.target.name]: e.target.value
         }))
     }
 
@@ -38,12 +47,16 @@ class Login extends React.Component{
             .then((response) => {
                 console.log("success", response)
                 localStorage.setItem("token", response.data.token)
+                this.props.handleIsAuthenticated(true)
                 this.setState(() => ({
                     redirect: true
                 }))
             })
             .catch((err) => {
-                console.log("Login Error",err)
+                console.log("Login Error",err.response.data)
+                this.setState(() => ({
+                    notice: err.response.data.notice
+                }))
             })
     }
 
@@ -54,15 +67,16 @@ class Login extends React.Component{
         return(
             <div>
                 <h1>Login here</h1>
+                {this.state.notice && <p>{this.state.notice}</p>}
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         email:
-                        <input type="text" value={this.state.email} onChange={this.handleEmail}/>
+                        <input type="text" value={this.state.email} name="email" onChange={this.handleChange}/>
                     </label><br/>
 
                     <label>
                         password:
-                        <input type="password" value={this.state.password} onChange={this.handlePassword}/>
+                        <input type="password" value={this.state.password} name="password" onChange={this.handleChange}/>
                     </label><br/>
 
                     <label>
