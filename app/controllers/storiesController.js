@@ -5,8 +5,8 @@ const {Story} = require("../models/story")
 const {User} = require("../models/user")
 const {authenticateUser} = require("../middlewares/authenticate")
 
-router.get("/", (req, res) => {
-    Story.find()
+router.get("/", authenticateUser, (req, res) => {
+    Story.find({user: req.user._id})
         .then((story) => {
             res.status("200").send(story)
         })
