@@ -21,16 +21,11 @@ router.post("/", authenticateUser, (req, res) => {
     // console.log(story)
 
     // this is refered from authentication middleware
-    
-     console.log(req.user)
 
     story.user = req.user._id
 
     story.save()
         .then((story) => {
-            console.log("story")
-            console.log(story)
-
             // storing stories id in user schema
             User.update({
                 _id: req.user._id
@@ -39,24 +34,26 @@ router.post("/", authenticateUser, (req, res) => {
                     stories: story._id
                 }
             }).exec(function(err, user){
-                console.log("foo_bar is added to the list of your followers");
+                console.log("story id is added to the list of your users");
             })
             res.status("200").send(story)
         })
         .catch((err) => {
-            console.log("err")
-            console.log(err)
             res.status("404").send(err)
         })
 })
 
-router.get("/:id", (req, res) => {
+router.get("/:id", authenticateUser, (req, res) => {
     const id = req.params.id
 
-    Story.findOne({_id: id})
+    Story.findOne({user: req.user._id, _id: id})
         // .populate('user')
         .then((story) => {
-            res.status("200").send(story)
+            if(story){
+                res.status("200").send(story)   
+            }else{
+                res.send({})  
+            }
         })
         .catch((err) => {
             res.status("404").send(err)
@@ -64,10 +61,10 @@ router.get("/:id", (req, res) => {
 })
 
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", authenticateUser, (req, res) => {
     const id = req.params.id
 
-    Story.findByIdAndDelete({_id: id})
+    Story.findOneAndDelete({user: req.user._id, _id: id})
         .then((contact) => {
             res.status("200").send({notice: "story successfully deleted"})
         })
@@ -76,11 +73,11 @@ router.delete("/:id", (req, res) => {
         })
 })
 
-router.put("/:id", (req, res) => {
+router.put("/:id", authenticateUser, (req, res) => {
     const id = req.params.id
     const body = req.body
 
-    Story.findOneAndUpdate({_id: id}, { $set : body}, { new: true, runValidators: true})
+    Story.findOneAndUpdate({user: req.user._id, _id: id}, { $set : body}, { new: true, runValidators: true})
         .then((contact) => {
             res.status("200").send(contact)
         })
