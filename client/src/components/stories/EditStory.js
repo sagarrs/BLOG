@@ -1,5 +1,5 @@
 import React from 'react'
-import axios from 'axios'
+import axios from '../../config/axios'
 import Form from './Form'
 
 class EditStory extends React.Component{
@@ -13,7 +13,7 @@ class EditStory extends React.Component{
 
     componentDidMount = () => {
         const id = this.props.match.params.id
-        axios.get(`http://localhost:3005/stories/${id}`)
+        axios.get(`/stories/${id}`)
             .then((response) => {
                 this.setState(() => ({
                     story: response.data,
@@ -26,7 +26,7 @@ class EditStory extends React.Component{
     }
 
     handleSubmit = (formData) => {
-        axios.put(`http://localhost:3005/stories/${this.state.story._id}`, formData)
+        axios.put(`/stories/${this.state.story._id}`, formData)
             .then((response) => {
                 this.props.history.push(`/stories/${this.state.story._id}`)
             })

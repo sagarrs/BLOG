@@ -1,6 +1,6 @@
 import React from 'react'
 import Form from './Form'
-import axios from 'axios'
+import axios from '../../config/axios'
 
 class NewStory extends React.Component{
     constructor(){
@@ -12,7 +12,7 @@ class NewStory extends React.Component{
 
     handleSubmit = (formData) => {
 
-        axios.post("http://localhost:3005/stories", formData)
+        axios.post("/stories", formData)
         .then((response) => {
             console.log("success")
             console.log(response.data)

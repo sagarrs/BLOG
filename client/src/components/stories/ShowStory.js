@@ -1,5 +1,5 @@
 import React from 'react'
-import axios from 'axios'
+import axios from '../../config/axios'
 import {Link} from 'react-router-dom'
 
 class ShowStory extends React.Component{
@@ -15,7 +15,7 @@ class ShowStory extends React.Component{
         // if you do just confirm without window it'll throw an error
         const confirm = window.confirm("Are u sure ?")
         if(confirm){
-            axios.delete(`http://localhost:3005/stories/${id}`)
+            axios.delete(`/stories/${id}`)
                 .then((response) => {
                     console.log("deleted")
                     this.props.history.push("/stories")
@@ -29,7 +29,7 @@ class ShowStory extends React.Component{
     componentDidMount = () => {
         const id = this.props.match.params.id
         
-        axios.get(`http://localhost:3005/stories/${id}`)
+        axios.get(`/stories/${id}`)
             .then((response) => {
                 this.setState(() => ({
                     story: response.data

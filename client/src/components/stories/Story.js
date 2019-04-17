@@ -1,5 +1,5 @@
 import React from 'react'
-import axios from 'axios'
+import axios from '../../config/axios'
 import {Link} from 'react-router-dom'
 
 class Story extends React.Component{
@@ -11,7 +11,7 @@ class Story extends React.Component{
     }
 
     componentDidMount(){
-        axios.get("http://localhost:3005/stories")
+        axios.get("/stories")
             .then((story) => {
                 this.setState(() =>( {
                     stories: story.data
