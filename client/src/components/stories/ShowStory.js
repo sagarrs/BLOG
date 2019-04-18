@@ -50,7 +50,8 @@ class ShowStory extends React.Component{
                     // })
                     
                 }
-                <p>{this.state.story.body}</p>
+                <p>Title - {this.state.story.body}</p>
+                <p>Body - {this.state.story.body}</p>
                 <input type="button" value="Delete" onClick={this.handleDelete}/><br/><br/>
                 <Link to={`/stories/edit/${this.props.match.params.id}`}>EDIT</Link><br/>
                 <Link to="/stories">BACK</Link>
