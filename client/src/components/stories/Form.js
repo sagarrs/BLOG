@@ -65,7 +65,8 @@ class Form extends React.Component{
 
                     <label>
                         Body: 
-                        <input type="text" value={this.state.body} onChange={this.handleBody} />
+                        {/* <input type="text" value={this.state.body} onChange={this.handleBody} /> */}
+                        <textarea value={this.state.body} onChange={this.handleBody}></textarea>
                     </label><br/>
                     <label>
                         <input type="Submit" />

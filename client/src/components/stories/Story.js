@@ -29,12 +29,12 @@ class Story extends React.Component{
                 {
                     this.state.stories.length == 0 ? (<h2>No Stories found</h2>) : (
                         <div>
-                            <h1>This is My Story</h1>
+                            <h1>Your Stories</h1>
                             <ul>
                                 {
                                     this.state.stories.map((story) => {
                                         return(
-                                            <li key={story._id}><Link to={`/stories/${story._id}`}>{story.body}</Link></li>
+                                            <li key={story._id}><Link to={`/stories/${story._id}`}>{story.title}</Link></li>
                                         )
                                     })
                                 }
