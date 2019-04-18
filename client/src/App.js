@@ -34,6 +34,7 @@ import logo from './logo.svg';
 import './App.css';
 
 import {BrowserRouter, Route, Link, Switch} from 'react-router-dom'
+import axios from 'axios'
 import Home from "./components/layout/Home"
 import Story from "./components/stories/Story"
 import NewStory from "./components/stories/NewStory"
@@ -95,7 +96,16 @@ class App extends Component {
             <Route path="/stories/new" component={NewStory} exact={true} />
             <Route path="/stories/edit/:id" component={EditStory} exact={true} />
             <Route path="/stories/:id" component={ShowStory} exact={true} />
-        
+
+            <Route path="/logout" component={() => {
+              localStorage.clear()
+              axios.defaults.headers['x-auth'] = null
+              return(
+                <div>
+                  <p>you have successfully logged out</p>
+                </div>
+              )
+            }} />
           </Switch>
         </div>
       </BrowserRouter>

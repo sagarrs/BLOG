@@ -1,5 +1,5 @@
 import React from 'react'
-import axios from 'axios'
+import axios from '../../config/axios'
 import {Redirect} from 'react-router-dom'
 
 class Login extends React.Component{
@@ -43,9 +43,11 @@ class Login extends React.Component{
             password: this.state.password
         }
 
-        axios.post("http://localhost:3005/users/login", formData)
+        axios.post("/users/login", formData)
             .then((response) => {
                 console.log("success", response)
+                // below explanation is in book [pg-10] end
+                axios.defaults.headers['x-auth'] = response.data.token
                 localStorage.setItem("token", response.data.token)
                 this.props.handleIsAuthenticated(true)
                 this.setState(() => ({

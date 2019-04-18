@@ -1,5 +1,5 @@
 import React from 'react'
-import axios from 'axios';
+import axios from '../../config/axios';
 
 class Register extends React.Component{
     constructor(){
@@ -54,7 +54,7 @@ class Register extends React.Component{
             password: this.state.password
         }
         
-        axios.post("http://localhost:3005/users/register", formData)
+        axios.post("/users/register", formData)
             .then((user) => {
                 console.log("Success", user)
                 this.props.history.push("/login")
