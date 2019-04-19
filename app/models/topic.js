@@ -11,6 +11,6 @@ const topicSchema = new Schema({
 
 const Topic = mongoose.model("Topic", topicSchema)
 
-exports.module = {
+module.exports = {
     Topic
 }

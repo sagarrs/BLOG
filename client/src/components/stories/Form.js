@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import Select from 'react-select'
 
 class Form extends React.Component{
     constructor(props){
@@ -11,7 +12,9 @@ class Form extends React.Component{
             // title: props.story ? props.story.title : "",
             // body: props.story ? props.story.body : ""
             title: "",
-            body: ""
+            body: "",
+            topic: "",
+            tag: ""
         }
     }
 
@@ -29,6 +32,24 @@ class Form extends React.Component{
         }))
     } 
 
+    handleTopic = (e) => {
+       console.log("inside topic")
+       const topic = e.value
+       this.setState(() => ({
+            topic
+       }))
+    }
+
+    handleTags = (e) => {
+        console.log("inside tags")
+        const tags = e.map((tag) => {
+            return tag.value
+        }) 
+        this.setState(() => ({
+            tag: tags
+        }))
+     }
+
     componentWillReceiveProps(nextProps){
         console.log("nextProps", nextProps)
         this.setState(() => ({
@@ -45,14 +66,28 @@ class Form extends React.Component{
             body: this.state.body
         }
 
+        const tagTopicData = {
+            topic: this.state.topic,
+            tag: this.state.tag
+        }
+
+        console.log(formData)
+        console.log("||||||||||||||||||||||||||||||||||||||||")
+        console.log(tagTopicData)
         // the handle submit of new story is in "this.props" coz we r passing as
         // "props" from new story "<Form handleSubmit={this.handleSubmit}/>"
         // here we r passing "formData as args for handleSubmit" which calls the
         // handleSubmit in the new story
-        this.props.handleSubmit(formData)
+
+        // this.props.handleSubmit(formData, tagTopicData)
     }
 
     render(){
+        const options = [
+            { value: 'chocolate', label: 'Chocolate' },
+            { value: 'strawberry', label: 'Strawberry' },
+            { value: 'vanilla', label: 'Vanilla' }
+          ]
         return(
             <div>
                 <h1>Form</h1>
@@ -60,16 +95,35 @@ class Form extends React.Component{
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         Title: 
-                        <input type="text" value={this.state.title} onChange={this.handleTitle}/>
+                        <input type="text" className="form-control" value={this.state.title} onChange={this.handleTitle}/>
                     </label><br/>
 
                     <label>
                         Body: 
                         {/* <input type="text" value={this.state.body} onChange={this.handleBody} /> */}
-                        <textarea value={this.state.body} onChange={this.handleBody}></textarea>
+                        <textarea value={this.state.body} className="form-control" rows="5" onChange={this.handleBody}></textarea>
                     </label><br/>
+
+                    <div> 
+                        Topics:
+                        <Select options={options} onChange={this.handleTopic}/>
+                    </div><br/>
+
+                    <div> 
+                        Tags:
+                        <Select
+                            // defaultValue={[options[2], options[3]]}
+                            isMulti
+                            name="colors"
+                            options={options}
+                            className="basic-multi-select"
+                            classNamePrefix="select"
+                            onChange={this.handleTags}
+                        />
+                    </div><br/>
+
                     <label>
-                        <input type="Submit" />
+                        <input type="Submit" className="btn btn-outline-success"/>
                     </label>
                 </form>
             </div>

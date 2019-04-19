@@ -3,6 +3,7 @@ var cors = require("cors")
 const {mongoose} = require("./config/database")
 const {userRouter} = require("./app/controllers/usersController")
 const {storyRouter} = require("./app/controllers/storiesController")
+const {topicRouter} = require("./app/controllers/topicsController")
 const port = 3005
 
 const app = express()
@@ -17,6 +18,7 @@ app.get("/", function(req, res){
 
 app.use("/users", userRouter)
 app.use("/stories", storyRouter)
+app.use("/topics", topicRouter)
 
 app.listen(port, function(){
     console.log("Listening on port", port)
