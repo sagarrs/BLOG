@@ -10,7 +10,7 @@ class NewStory extends React.Component{
         }
     }
 
-    handleSubmit = (formData) => {
+    handleSubmit = (formData , tagTopicData) => {
 
         axios.post("/stories", formData)
         .then((response) => {
@@ -21,6 +21,16 @@ class NewStory extends React.Component{
         .catch((err) => {
             console.log("smasye ide", err)
         })
+
+        // axios.post("/tags", formData)
+        // .then((response) => {
+        //     console.log("success")
+        //     console.log(response.data)
+        //     this.props.history.push("/stories")
+        // })
+        // .catch((err) => {
+        //     console.log("smasye ide", err)
+        // })
 
     }   
 
