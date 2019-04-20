@@ -28,10 +28,10 @@ const storySchema = new Schema({
     previewImageUrl: {
         type: String
     },
-    topic: {
+    topicName: {
         type: String
     },
-    tags: [
+    tagName: [
 
     ],
     responses: [
