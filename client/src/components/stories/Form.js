@@ -13,8 +13,8 @@ class Form extends React.Component{
             // body: props.story ? props.story.body : ""
             title: "",
             body: "",
-            topic: "",
-            tag: ""
+            topicName: "",
+            tagName: ""
         }
     }
 
@@ -34,19 +34,18 @@ class Form extends React.Component{
 
     handleTopic = (e) => {
        console.log("inside topic")
-       const topic = e.value
+       const topicName = e.value
        this.setState(() => ({
-            topic
+            topicName
        }))
     }
 
     handleTags = (e) => {
-        console.log("inside tags")
         const tags = e.map((tag) => {
             return tag.value
         }) 
         this.setState(() => ({
-            tag: tags
+            tagName: tags
         }))
      }
 
@@ -54,7 +53,9 @@ class Form extends React.Component{
         console.log("nextProps", nextProps)
         this.setState(() => ({
             title: nextProps.story.title,
-            body: nextProps.story.body
+            body: nextProps.story.body,
+            topicName: nextProps.story.topicName,
+            tagName: nextProps.story.tagName
         }))
     }
 
@@ -63,30 +64,33 @@ class Form extends React.Component{
         
         const formData = {
             title: this.state.title,
-            body: this.state.body
+            body: this.state.body,
+            topicName: this.state.topicName,
+            tagName: this.state.tagName
         }
 
-        const tagTopicData = {
-            topic: this.state.topic,
-            tag: this.state.tag
+        const topicData = {
+            topicName: this.state.topicName
         }
 
-        console.log(formData)
-        console.log("||||||||||||||||||||||||||||||||||||||||")
-        console.log(tagTopicData)
+        const tagData = {
+            tagName: this.state.tagName
+        }
+        
         // the handle submit of new story is in "this.props" coz we r passing as
         // "props" from new story "<Form handleSubmit={this.handleSubmit}/>"
         // here we r passing "formData as args for handleSubmit" which calls the
         // handleSubmit in the new story
 
-        // this.props.handleSubmit(formData, tagTopicData)
+        // console.log(formData)
+        this.props.handleSubmit(formData, topicData, tagData)
     }
 
     render(){
         const options = [
-            { value: 'chocolate', label: 'Chocolate' },
-            { value: 'strawberry', label: 'Strawberry' },
-            { value: 'vanilla', label: 'Vanilla' }
+            { value: 'react', label: 'React' },
+            { value: 'vue', label: 'Vue' },
+            { value: 'angular', label: 'Angular' }
           ]
         return(
             <div>

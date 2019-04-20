@@ -2,6 +2,7 @@ const express = require("express")
 const router = express.Router()
 
 const {Story} = require("../models/story")
+const {Tags} = require("../models/tags")
 const {User} = require("../models/user")
 const {authenticateUser} = require("../middlewares/authenticate")
 
@@ -26,7 +27,21 @@ router.post("/", authenticateUser, (req, res) => {
 
     story.save()
         .then((story) => {
-            // storing stories id in user schema
+
+            // storing story_id in Tags Schema
+            let tagName = story.tagName.toString()
+            Tags.update({
+                tagName: tagName
+            }, {
+                $push: {
+                    stories: story._id
+                }
+            }).exec(function(err, user){
+                console.log("story id is added to the list of your Tags");
+            })
+
+
+            // storing stories id in User schema
             User.update({
                 _id: req.user._id
             }, {
@@ -37,6 +52,7 @@ router.post("/", authenticateUser, (req, res) => {
                 console.log("story id is added to the list of your users");
             })
             res.status("200").send(story)
+
         })
         .catch((err) => {
             res.status("404").send(err)
