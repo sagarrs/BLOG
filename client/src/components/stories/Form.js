@@ -1,6 +1,8 @@
 import React from 'react'
 import axios from 'axios'
 import Select from 'react-select'
+import CKEditor from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 class Form extends React.Component{
     constructor(props){
@@ -25,12 +27,23 @@ class Form extends React.Component{
         }))
     }
 
-    handleBody = (e) => {
-        const body = e.target.value
+    // handleBody = (value) => {
+    //     console.log("body")
+    //     console.log(value)
+    //     // const body = e.target.value
+        // this.setState(() => ({
+        //     body
+        // }))
+    // } 
+
+   handleBody = ( ( event, editor ) => {
+        console.log("body")
+        const data = editor.getData();
+        console.log(data)
         this.setState(() => ({
-            body
+            body: data
         }))
-    } 
+    } )
 
     handleTopic = (e) => {
        console.log("inside topic")
@@ -104,8 +117,22 @@ class Form extends React.Component{
 
                     <label>
                         Body: 
-                        {/* <input type="text" value={this.state.body} onChange={this.handleBody} /> */}
-                        <textarea value={this.state.body} className="form-control" rows="5" onChange={this.handleBody}></textarea>
+                        {/* <textarea value={this.state.body} className="form-control" rows="5" onChange={this.handleBody}></textarea> */}
+                        <CKEditor
+                            editor={ ClassicEditor }
+                            data={this.state.body}
+                            onInit={ editor => {
+                                // You can store the "editor" and use when it is needed.
+                                console.log( 'Editor is ready to use!', editor );
+                            } }
+                            onChange={this.handleBody}
+                            onBlur={ editor => {
+                                console.log( 'Blur.', editor );
+                            } }
+                            onFocus={ editor => {
+                                console.log( 'Focus.', editor );
+                            } }
+                        />
                     </label><br/>
 
                     <div> 
