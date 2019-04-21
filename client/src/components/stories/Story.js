@@ -25,7 +25,6 @@ class Story extends React.Component{
     render(){
         return(
             <div>
-
                 {
                     this.state.stories.length == 0 ? (<h2>No Stories found</h2>) : (
                         <div>

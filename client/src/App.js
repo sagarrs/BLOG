@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 import {BrowserRouter, Route, Link, Switch} from 'react-router-dom'
 import axios from 'axios'
 import Home from "./components/layout/Home"
+import Navigation from "./components/layout/Navigation"
+
 import Story from "./components/stories/Story"
 import NewStory from "./components/stories/NewStory"
 
@@ -35,8 +36,9 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
+        <Navigation />
         <div className="container">
-            <div className="float-right">
+            {/* <div className="float-right">
               {
                 this.state.isAuthenticated && <Link className="login-reg" to="/logout">Logout</Link>
               }
@@ -49,7 +51,7 @@ class App extends Component {
                 )
               }
         
-            </div>
+            </div> */}
 
           <Switch>
             <Route path="/" component={Home} exact={true}/>
@@ -76,6 +78,8 @@ class App extends Component {
                 </div>
               )
             }} />
+
+              <Route path="/navigation" component={Navigation} exact={true} />
           </Switch>
         </div>
       </BrowserRouter>

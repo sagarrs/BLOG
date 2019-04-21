@@ -43,7 +43,6 @@ class ShowStory extends React.Component{
     render(){
         return(
             <div>
-                <h2>Show Story</h2>
                 {
                     // this.state.story.map((story) => {
                     //     return <p key={story._id}>{story.body}</p>

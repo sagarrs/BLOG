@@ -6,15 +6,15 @@ class Home extends React.Component{
         const tabs = {
             color: 'grey',
           };
-        const headFont = {
-            fontFamily: "Lucida Console",
-            fontWeight: "bold"
-        };
+        // const headFont = {
+        //     fontFamily: "Lucida Console",
+        //     fontWeight: "bold"
+        // };
 
         return(
             <div>
                 <div className="container">
-                    <h1 style={headFont}>Medium Clone</h1><br/>
+                    {/* <h1 style={headFont}>Medium Clone</h1><br/> */}
                     <div className="text-center">
                         <Link to="/" style={tabs}>Home</Link> &nbsp; 
                         <Link to="/" style={tabs}>Culture</Link> &nbsp;
