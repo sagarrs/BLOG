@@ -36,7 +36,7 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <Navigation />
+        <Navigation handleAuth={this.state.isAuthenticated}/>
         <div className="container">
             {/* <div className="float-right">
               {
