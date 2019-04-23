@@ -33,7 +33,19 @@ class Story extends React.Component{
                                 {
                                     this.state.stories.map((story) => {
                                         return(
-                                            <li key={story._id}><Link to={`/stories/${story._id}`}>{story.title}</Link></li>
+                                            <div>
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    Stories
+                                                </div>
+                                                <div class="card-body">
+                                                    <h5 class="card-title">{story.title}</h5>
+                                                    <p class="card-text">{story.body}</p>
+                                                    <Link to={`/stories/${story._id}`} class="btn btn-outline-success">Go to story</Link>
+                                                </div>
+                                            </div><br/>
+                                            </div>
+                                            // <li key={story._id}><Link to={`/stories/${story._id}`}>{story.title}</Link></li>
                                         )
                                     })
                                 }
@@ -41,7 +53,7 @@ class Story extends React.Component{
                         </div> 
                     )
                 }
-                <Link to="/stories/new">Add new Story</Link>
+                <Link to="/stories/new" class="btn btn-outline-success">Add new Story</Link>
             </div>
         )
     }
