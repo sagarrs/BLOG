@@ -1,7 +1,31 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import axios from '../../config/axios'
 
 class Home extends React.Component{
+    constructor(){
+        super()
+        this.state = {
+            stories: []
+        }
+    }
+
+    componentDidMount(){
+        axios.get("/stories/public")
+        .then((story) => {
+            this.setState(() =>( {
+                stories: story.data
+            }))
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    }
+
+    handleBookmark = () => {
+        console.log("bookmark clicked")
+    }
+
     render(){
         const tabs = {
             color: 'grey',
@@ -25,7 +49,28 @@ class Home extends React.Component{
                     
                     <div className="row" style={{padding: 20}}>
                         <div className="text-center">
-                            <img style={{width: 1050, height: 500}} src={'https://cathylu25.files.wordpress.com/2015/02/graffiti-art121.jpg'} />
+                            {/* <img style={{width: 1050, height: 500}} src={'https://cathylu25.files.wordpress.com/2015/02/graffiti-art121.jpg'} /> */}
+                            <ul>
+                                {
+                                    this.state.stories.map((story) => {
+                                        return(
+                                            <div>
+                                            <div className="card">
+                                                <div className="card-header">
+                                                    Stories
+                                                </div>
+                                                <div className="card-body">
+                                                    <h5 className="card-title">{story.title}</h5>
+                                                    <p className="card-text">{story.body}</p>
+                                                    {/* <Link to={`/stories/${story._id}`} className="btn btn-outline-success">Go to story</Link> */}
+                                                    <Link className="btn btn-outline-success" onClick={this.handleBookmark}>Bookmark</Link>
+                                                </div>
+                                            </div><br/>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </ul>
                         </div>
                     </div>
                 </div>

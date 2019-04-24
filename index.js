@@ -17,6 +17,7 @@ app.get("/", function(req, res){
     res.send("<h1>Welcome To New Blog</h1>")
 })
 
+app.use('/upload', express.static('upload'))
 app.use("/users", userRouter)
 app.use("/stories", storyRouter)
 app.use("/topics", topicRouter)

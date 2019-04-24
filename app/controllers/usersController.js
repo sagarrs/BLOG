@@ -30,7 +30,6 @@ router.post("/register", (req, res) => {
     const body = req.body
 
     const user = new User(body)
-
     user.save()
         .then((user) => {
             res.status("200").send(user)

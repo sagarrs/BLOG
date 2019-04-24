@@ -6,6 +6,44 @@ const {Tags} = require("../models/tags")
 const {User} = require("../models/user")
 const {authenticateUser} = require("../middlewares/authenticate")
 
+const multer = require("multer")
+
+const storage = multer.diskStorage({
+    destination: function(req, file, cb){
+        cb(null, './upload/')
+    },
+    filename: function(req, file, cb){
+        cb(null, new Date().toISOString() + file.originalname)
+    }
+})
+
+const fileFilter = (req, file, cb) => {
+    if(file.mimetype === 'image/jpg' || file.mimetype === 'image/jpeg' || file.mimetype === 'image/png'){
+        cb(null, true)
+    }else{
+        cb(null, false)
+    }
+}
+
+const upload = multer({
+    storage: storage,
+    limits: {
+        fileSize: 1024 * 1024 * 5
+    },
+    fileFilter: fileFilter
+})
+
+// public route
+router.get("/public", (req, res) => {
+    Story.find()
+        .then((story) => {
+            res.status("200").send(story)
+        })
+        .catch((err) => {
+            res.status("404").send(err)
+        })
+})
+
 router.get("/", authenticateUser, (req, res) => {
     Story.find({user: req.user._id})
         .then((story) => {
@@ -16,10 +54,19 @@ router.get("/", authenticateUser, (req, res) => {
         })
 })
 
-router.post("/", authenticateUser, (req, res) => {
+router.post("/", authenticateUser, upload.single("previewImageUrl"), (req, res) => {
+    // console.log(req.file)
+
     const body = req.body
-    const story = new Story(body)
-    // console.log(story)
+    // const story = new Story(body)
+    console.log("---------this is story controller ------")
+    const story = new Story({
+        title: req.body.title,
+        body: req.body.body,
+        topicName: req.body.topicName,
+        tagName: req.body.tagName,
+        previewImageUrl: req.file.path
+    })
 
     // this is refered from authentication middleware
 

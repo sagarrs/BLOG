@@ -53,6 +53,7 @@ class ShowStory extends React.Component{
                 <p>Body - {this.state.story.body}</p>
                 <p>Topic - {this.state.story.topicName}</p>
                 <p>Tags - {this.state.story.tagName}</p>
+                <img src={this.state.story.previewImageUrl} /><br/>
                 <input type="button" value="Delete" onClick={this.handleDelete}/><br/><br/>
                 <Link to={`/stories/edit/${this.props.match.params.id}`}>EDIT</Link><br/>
                 <Link to="/stories">BACK</Link>
