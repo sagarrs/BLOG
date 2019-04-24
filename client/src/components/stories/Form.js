@@ -16,7 +16,8 @@ class Form extends React.Component{
             title: "",
             body: "",
             topicName: "",
-            tagName: ""
+            tagName: "",
+            previewImageUrl: null
         }
     }
 
@@ -72,15 +73,20 @@ class Form extends React.Component{
         }))
     }
 
+    handleFile = (e) => {
+        // console.log(e.target.files[0])
+        this.setState({previewImageUrl:e.target.files[0]})
+    }
+    
     handleSubmit = (e) => {
         e.preventDefault()
         
-        const formData = {
-            title: this.state.title,
-            body: this.state.body,
-            topicName: this.state.topicName,
-            tagName: this.state.tagName
-        }
+        // const formData = {
+        //     title: this.state.title,
+        //     body: this.state.body,
+        //     topicName: this.state.topicName,
+        //     tagName: this.state.tagName
+        // }
 
         const topicData = {
             topicName: this.state.topicName
@@ -95,7 +101,19 @@ class Form extends React.Component{
         // here we r passing "formData as args for handleSubmit" which calls the
         // handleSubmit in the new story
 
-        // console.log(formData)
+        var formData = new FormData()
+        formData.append('title', this.state.title)
+        formData.append('body', this.state.body)
+        formData.append('topicName', this.state.topicName)
+        formData.append('tagName', this.state.tagName)
+        formData.append('previewImageUrl', this.state.previewImageUrl, this.state.previewImageUrl.name)
+
+        console.log(formData.get('title'))
+        console.log(formData.get('body'))
+        console.log(formData.get('topicName'))
+        console.log(formData.get('tagName'))
+        console.log(formData.get('previewImageUrl'))
+
         this.props.handleSubmit(formData, topicData, tagData)
     }
 
@@ -151,6 +169,11 @@ class Form extends React.Component{
                             classNamePrefix="select"
                             onChange={this.handleTags}
                         />
+                    </div><br/>
+                    
+                    <div> 
+                        I:mage
+                        <input type="file" name="previewImageUrl" onChange={this.handleFile}/>
                     </div><br/>
 
                     <label>

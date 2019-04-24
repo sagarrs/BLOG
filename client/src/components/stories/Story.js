@@ -29,19 +29,20 @@ class Story extends React.Component{
                     this.state.stories.length == 0 ? (<h2>No Stories found</h2>) : (
                         <div>
                             <h1>Your Stories</h1>
+                            
                             <ul>
                                 {
                                     this.state.stories.map((story) => {
                                         return(
                                             <div>
-                                            <div class="card">
-                                                <div class="card-header">
+                                            <div className="card">
+                                                <div className="card-header">
                                                     Stories
                                                 </div>
-                                                <div class="card-body">
-                                                    <h5 class="card-title">{story.title}</h5>
-                                                    <p class="card-text">{story.body}</p>
-                                                    <Link to={`/stories/${story._id}`} class="btn btn-outline-success">Go to story</Link>
+                                                <div className="card-body">
+                                                    <h5 className="card-title">{story.title}</h5>
+                                                    <p className="card-text">{story.body}</p>
+                                                    <Link to={`/stories/${story._id}`} className="btn btn-outline-success">Go to story</Link>
                                                 </div>
                                             </div><br/>
                                             </div>
@@ -53,7 +54,7 @@ class Story extends React.Component{
                         </div> 
                     )
                 }
-                <Link to="/stories/new" class="btn btn-outline-success">Add new Story</Link>
+                <Link to="/stories/new" className="btn btn-outline-success">Add new Story</Link>
             </div>
         )
     }
