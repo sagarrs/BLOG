@@ -108,12 +108,6 @@ class Form extends React.Component{
         formData.append('tagName', this.state.tagName)
         formData.append('previewImageUrl', this.state.previewImageUrl, this.state.previewImageUrl.name)
 
-        console.log(formData.get('title'))
-        console.log(formData.get('body'))
-        console.log(formData.get('topicName'))
-        console.log(formData.get('tagName'))
-        console.log(formData.get('previewImageUrl'))
-
         this.props.handleSubmit(formData, topicData, tagData)
     }
 

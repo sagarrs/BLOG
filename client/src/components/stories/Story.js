@@ -34,17 +34,17 @@ class Story extends React.Component{
                                 {
                                     this.state.stories.map((story) => {
                                         return(
-                                            <div>
-                                            <div className="card">
-                                                <div className="card-header">
-                                                    Stories
-                                                </div>
-                                                <div className="card-body">
-                                                    <h5 className="card-title">{story.title}</h5>
-                                                    <p className="card-text">{story.body}</p>
-                                                    <Link to={`/stories/${story._id}`} className="btn btn-outline-success">Go to story</Link>
-                                                </div>
-                                            </div><br/>
+                                            <div key={story._id}>
+                                                <div className="card">
+                                                    <div className="card-header">
+                                                        Stories
+                                                    </div>
+                                                    <div className="card-body">
+                                                        <h5 className="card-title">{story.title}</h5>
+                                                        <p className="card-text">{story.body}</p>
+                                                        <Link to={`/stories/${story._id}`} className="btn btn-outline-success">Go to story</Link>
+                                                    </div>
+                                                </div><br/>
                                             </div>
                                             // <li key={story._id}><Link to={`/stories/${story._id}`}>{story.title}</Link></li>
                                         )
