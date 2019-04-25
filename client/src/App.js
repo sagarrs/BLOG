@@ -15,6 +15,8 @@ import Login from "./components/authentication/Login"
 import ShowStory from "./components/stories/ShowStory"
 import EditStory from "./components/stories/EditStory"
 
+import ShowPublicStory from "./components/stories/ShowPublicStory"
+
 class App extends Component {
   constructor(){
     super()
@@ -67,6 +69,8 @@ class App extends Component {
             <Route path="/stories/new" component={NewStory} exact={true} />
             <Route path="/stories/edit/:id" component={EditStory} exact={true} />
             <Route path="/stories/:id" component={ShowStory} exact={true} />
+
+            <Route path="/stories/public/:id" component={ShowPublicStory} exact={true} />
 
             <Route path="/logout" component={() => {
               localStorage.clear()

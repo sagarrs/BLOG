@@ -10,26 +10,10 @@ class ShowStory extends React.Component{
         }
     }
 
-    handleDelete = () => {
-        const id = this.props.match.params.id
-        // if you do just confirm without window it'll throw an error
-        const confirm = window.confirm("Are u sure ?")
-        if(confirm){
-            axios.delete(`/stories/${id}`)
-                .then((response) => {
-                    console.log("deleted")
-                    this.props.history.push("/stories")
-                })
-                .catch((err) => {
-                    console.log("err", err)
-                })
-        }
-    }
-
     componentDidMount = () => {
         const id = this.props.match.params.id
         console.log(id)
-        axios.get(`/stories/${id}`)
+        axios.get(`/stories/public/${id}`)
             .then((response) => {
                 console.log(response.data)
                 this.setState(() => ({
@@ -58,9 +42,7 @@ class ShowStory extends React.Component{
                 <div>
                     <img src={this.state.story.previewImageUrl} />
                 </div>
-                <input type="button" value="Delete" onClick={this.handleDelete}/><br/><br/>
-                <Link to={`/stories/edit/${this.props.match.params.id}`}>EDIT</Link><br/>
-                <Link to="/stories">BACK</Link>
+                <Link to="/">BACK</Link>
             </div>
         )
     }

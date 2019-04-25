@@ -20,10 +20,39 @@ class Home extends React.Component{
         .catch((err) => {
             console.log(err)
         })
+        
     }
 
-    handleBookmark = () => {
-        console.log("bookmark clicked")
+    handleBookmark = (storyId) => {
+        const fd = {
+            bookmarks: storyId
+        }
+
+        axios.post("/users/bookmark/register", fd)
+            .then((user) => {
+                console.log("it worked", user)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+
+    }
+
+    handleFollow = (userId) => {
+        console.log("handle follow")
+        console.log(userId)
+
+        const ud = {
+            following: userId
+        }
+
+        axios.post("/users/follow/register", ud)
+        .then((user) => {
+            console.log("it worked", user)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
     }
 
     render(){
@@ -54,18 +83,21 @@ class Home extends React.Component{
                                 {
                                     this.state.stories.map((story) => {
                                         return(
-                                            <div>
-                                            <div className="card">
-                                                <div className="card-header">
-                                                    Stories
-                                                </div>
-                                                <div className="card-body">
-                                                    <h5 className="card-title">{story.title}</h5>
-                                                    <p className="card-text">{story.body}</p>
-                                                    {/* <Link to={`/stories/${story._id}`} className="btn btn-outline-success">Go to story</Link> */}
-                                                    <Link className="btn btn-outline-success" onClick={this.handleBookmark}>Bookmark</Link>
-                                                </div>
-                                            </div><br/>
+                                            <div key={story._id}>
+                                                <div className="card">
+                                                    <div className="card-header">
+                                                        <Link to={`/stories/public/${story._id}`} >Stories</Link>
+                                                        <button type="button" className="btn btn-outline-success" onClick={() => {this.handleFollow(story.user)}}>Follow</button>
+                                                    </div>
+                                                    <div className="card-body">
+                                                        <h5 className="card-title">{story.title}</h5>
+                                                        <p className="card-text">{story.body}</p>
+                                                        <p className="card-text">{story.user}</p>
+                                                        {/* <Link to={`/stories/${story._id}`} className="btn btn-outline-success">Go to story</Link> */}
+                                                        {/* <Link className="btn btn-outline-success" onClick={() => {this.handleBookmark(story._id)}}>Bookmark</Link> */}
+                                                        <button type="button" className="btn btn-outline-success" onClick={() => {this.handleBookmark(story._id)}}>Bookmark</button>
+                                                    </div>
+                                                </div><br/>
                                             </div>
                                         )
                                     })

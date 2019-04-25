@@ -109,7 +109,32 @@ router.post("/", authenticateUser, upload.single("previewImageUrl"), (req, res) 
 router.get("/:id", authenticateUser, (req, res) => {
     const id = req.params.id
 
+    console.log("this is stories controller")
+    console.log(id)
+    console.log(req.user._id)
+
     Story.findOne({user: req.user._id, _id: id})
+        // .populate('user')
+        .then((story) => {
+            if(story){
+                res.status("200").send(story)   
+            }else{
+                res.send({})  
+            }
+        })
+        .catch((err) => {
+            res.status("404").send(err)
+        })
+})
+
+// get story of a user public route
+router.get("/public/:id", (req, res) => {
+    const id = req.params.id
+
+    console.log("this is stories controller")
+    console.log(id)
+
+    Story.findOne({_id: id})
         // .populate('user')
         .then((story) => {
             if(story){

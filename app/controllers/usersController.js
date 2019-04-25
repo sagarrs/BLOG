@@ -2,6 +2,7 @@ const express = require("express")
 const router = express.Router()
 
 const {User} = require("../models/user")
+const {Story} = require("../models/story")
 const {authenticateUser} = require("../middlewares/authenticate")
 
 router.get("/", (req, res) => {
@@ -26,10 +27,65 @@ router.get("/:id", (req, res) => {
         })
 })
 
-router.post("/register", (req, res) => {
+
+// bookmark private route
+router.post("/bookmark/register", authenticateUser, (req, res) => {
     const body = req.body
 
+    console.log("---------this is users controller bookmark private route -----------")
+
+    console.log(req.user._id)
+    console.log(req.body.bookmarks)
+
+    User.update({
+        _id: req.user._id
+    }, {
+        $push: {
+            bookmarks: req.body.bookmarks
+        }
+    }).exec(function(err, user){
+        console.log("story id is added to the list of your users");
+    })
+})
+
+// follower - following private route
+router.post("/follow/register", authenticateUser, (req, res) => {
+    const body = req.body
+
+    console.log("---------this is users controller follow private route -----------")
+
+    console.log(req.user._id)
+    console.log(req.body.following)
+
+    User.update({
+        _id: req.user._id // updates user who follows
+        // _id: req.body.following // updates user who gets followed bu abv user
+    }, {
+        $push: {
+            following: req.body.following
+            // followers: req.user._id
+        }
+    }).exec(function(err, user){
+        console.log("useer id is added to the list of your following");
+    })
+
+
+    User.update({
+        _id: req.body.following
+    }, {
+        $push: {
+            followers: req.user._id
+        }
+    }).exec(function(err, user){
+        console.log("story id is added to the list of your users");
+    })
+
+})
+
+router.post("/register", (req, res) => {
+    const body = req.body
     const user = new User(body)
+
     user.save()
         .then((user) => {
             res.status("200").send(user)
