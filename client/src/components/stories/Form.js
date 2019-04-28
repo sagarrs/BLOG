@@ -135,14 +135,14 @@ class Form extends React.Component{
                             data={this.state.body}
                             onInit={ editor => {
                                 // You can store the "editor" and use when it is needed.
-                                console.log( 'Editor is ready to use!', editor );
+                                // console.log( 'Editor is ready to use!', editor );
                             } }
                             onChange={this.handleBody}
                             onBlur={ editor => {
-                                console.log( 'Blur.', editor );
+                                // console.log( 'Blur.', editor );
                             } }
                             onFocus={ editor => {
-                                console.log( 'Focus.', editor );
+                                // console.log( 'Focus.', editor );
                             } }
                         />
                     </label><br/>
@@ -166,7 +166,7 @@ class Form extends React.Component{
                     </div><br/>
                     
                     <div> 
-                        I:mage
+                        Image
                         <input type="file" name="previewImageUrl" onChange={this.handleFile}/>
                     </div><br/>
 

@@ -4,13 +4,14 @@ const Schema = mongoose.Schema
 
 const responseSchema = new Schema({
     user: {
-
+        type: String
     },
     body: {
-
+        type: String
     },
     createdAt: {
-        type: Date
+        type: Date,
+        default: Date.now
     }
 })
 

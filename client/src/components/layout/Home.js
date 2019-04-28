@@ -92,7 +92,6 @@ class Home extends React.Component{
                                                     <div className="card-body">
                                                         <h5 className="card-title">{story.title}</h5>
                                                         <p className="card-text">{story.body}</p>
-                                                        <p className="card-text">{story.user}</p>
                                                         {/* <Link to={`/stories/${story._id}`} className="btn btn-outline-success">Go to story</Link> */}
                                                         {/* <Link className="btn btn-outline-success" onClick={() => {this.handleBookmark(story._id)}}>Bookmark</Link> */}
                                                         <button type="button" className="btn btn-outline-success" onClick={() => {this.handleBookmark(story._id)}}>Bookmark</button>
