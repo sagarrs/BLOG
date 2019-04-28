@@ -28,7 +28,6 @@ class ShowStory extends React.Component{
 
     componentDidMount = () => {
         const id = this.props.match.params.id
-        console.log(id)
         axios.get(`/stories/${id}`)
             .then((response) => {
                 console.log(response.data)
@@ -42,7 +41,6 @@ class ShowStory extends React.Component{
     }
 
     render(){
-        console.log(this.state.story)
         return(
             <div>
                 {
