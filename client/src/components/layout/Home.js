@@ -1,6 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import axios from '../../config/axios'
+import '../../App.css'
 
 class Home extends React.Component{
     constructor(){
@@ -56,9 +57,9 @@ class Home extends React.Component{
     }
 
     render(){
-        const tabs = {
-            color: 'grey',
-          };
+        // const tabs = {
+        //     color: 'grey',
+        //   };
         // const headFont = {
         //     fontFamily: "Lucida Console",
         //     fontWeight: "bold"
@@ -69,16 +70,16 @@ class Home extends React.Component{
                 <div className="container">
                     {/* <h1 style={headFont}>Medium Clone</h1><br/> */}
                     <div className="text-center">
-                        <Link to="/" style={tabs}>Home</Link> &nbsp; &nbsp;
-                        <Link to="/" style={tabs}>Culture</Link> &nbsp; &nbsp;
-                        <Link to="/" style={tabs}>Startups</Link> &nbsp; &nbsp;
-                        <Link to="/" style={tabs}>Health</Link> &nbsp; &nbsp;
-                        <Link to="/" style={tabs}>Tech</Link> &nbsp; &nbsp;
-                        <Link to="/" style={tabs}>Design</Link> &nbsp; &nbsp;
-                        <Link to="/" style={tabs}>Politics</Link> &nbsp; &nbsp;
-                        <Link to="/" style={tabs}>Art</Link> &nbsp; &nbsp;
-                        <Link to="/" style={tabs}>Books</Link> &nbsp; &nbsp;
-                        <Link to="/" style={tabs}>Fiction</Link> &nbsp;
+                        <Link to="/" className="tabs">Home</Link> &nbsp; &nbsp;
+                        <Link to="/" className="tabs">Culture</Link> &nbsp; &nbsp;
+                        <Link to="/" className="tabs">Startups</Link> &nbsp; &nbsp;
+                        <Link to="/" className="tabs">Health</Link> &nbsp; &nbsp;
+                        <Link to="/" className="tabs">Tech</Link> &nbsp; &nbsp;
+                        <Link to="/" className="tabs">Design</Link> &nbsp; &nbsp;
+                        <Link to="/" className="tabs">Politics</Link> &nbsp; &nbsp;
+                        <Link to="/" className="tabs">Art</Link> &nbsp; &nbsp;
+                        <Link to="/" className="tabs">Books</Link> &nbsp; &nbsp;
+                        <Link to="/" className="tabs">Fiction</Link> &nbsp;
                     </div>
                     
 
@@ -90,12 +91,13 @@ class Home extends React.Component{
                                     <div key={story._id}>
                                         <div className="card">
                                             <div className="card-header">
-                                                <Link to={`/stories/public/${story._id}`} >Stories</Link>
-                                                <button type="button" className="btn btn-outline-success" onClick={() => {this.handleFollow(story.user)}}>Follow</button>
+                                                <Link to={`/stories/public/${story._id}`} >Read Stories</Link>
+                                                <button type="button" style={{float: "right"}} className="btn btn-outline-success" onClick={() => {this.handleFollow(story.user)}}>Follow</button>
                                             </div>
                                             <div className="card-body">
                                                 <h5 className="card-title">{story.title}</h5>
                                                 <p className="card-text">{story.body}</p>
+                                                <img className="home-img" src={`http://localhost:3005/${story.previewImageUrl}`} /><br/><br/>
                                                 {/* <Link to={`/stories/${story._id}`} className="btn btn-outline-success">Go to story</Link> */}
                                                 {/* <Link className="btn btn-outline-success" onClick={() => {this.handleBookmark(story._id)}}>Bookmark</Link> */}
                                                 <button type="button" className="btn btn-outline-success" onClick={() => {this.handleBookmark(story._id)}}>Bookmark</button>
