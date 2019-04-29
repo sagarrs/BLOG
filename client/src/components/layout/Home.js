@@ -69,41 +69,43 @@ class Home extends React.Component{
                 <div className="container">
                     {/* <h1 style={headFont}>Medium Clone</h1><br/> */}
                     <div className="text-center">
-                        <Link to="/" style={tabs}>Home</Link> &nbsp; 
-                        <Link to="/" style={tabs}>Culture</Link> &nbsp;
-                        <Link to="/" style={tabs}>Tech</Link> &nbsp;
-                        <Link to="/" style={tabs}>Startups</Link> &nbsp;
-                        <Link to="/" style={tabs}>Health</Link>
+                        <Link to="/" style={tabs}>Home</Link> &nbsp; &nbsp;
+                        <Link to="/" style={tabs}>Culture</Link> &nbsp; &nbsp;
+                        <Link to="/" style={tabs}>Startups</Link> &nbsp; &nbsp;
+                        <Link to="/" style={tabs}>Health</Link> &nbsp; &nbsp;
+                        <Link to="/" style={tabs}>Tech</Link> &nbsp; &nbsp;
+                        <Link to="/" style={tabs}>Design</Link> &nbsp; &nbsp;
+                        <Link to="/" style={tabs}>Politics</Link> &nbsp; &nbsp;
+                        <Link to="/" style={tabs}>Art</Link> &nbsp; &nbsp;
+                        <Link to="/" style={tabs}>Books</Link> &nbsp; &nbsp;
+                        <Link to="/" style={tabs}>Fiction</Link> &nbsp;
                     </div>
                     
-                    <div className="row" style={{padding: 20}}>
-                        <div className="text-center">
-                            {/* <img style={{width: 1050, height: 500}} src={'https://cathylu25.files.wordpress.com/2015/02/graffiti-art121.jpg'} /> */}
-                            <ul>
-                                {
-                                    this.state.stories.map((story) => {
-                                        return(
-                                            <div key={story._id}>
-                                                <div className="card">
-                                                    <div className="card-header">
-                                                        <Link to={`/stories/public/${story._id}`} >Stories</Link>
-                                                        <button type="button" className="btn btn-outline-success" onClick={() => {this.handleFollow(story.user)}}>Follow</button>
-                                                    </div>
-                                                    <div className="card-body">
-                                                        <h5 className="card-title">{story.title}</h5>
-                                                        <p className="card-text">{story.body}</p>
-                                                        {/* <Link to={`/stories/${story._id}`} className="btn btn-outline-success">Go to story</Link> */}
-                                                        {/* <Link className="btn btn-outline-success" onClick={() => {this.handleBookmark(story._id)}}>Bookmark</Link> */}
-                                                        <button type="button" className="btn btn-outline-success" onClick={() => {this.handleBookmark(story._id)}}>Bookmark</button>
-                                                    </div>
-                                                </div><br/>
+
+                    {/* <img style={{width: 1050, height: 500}} src={'https://cathylu25.files.wordpress.com/2015/02/graffiti-art121.jpg'} /> */}
+                    <ul>
+                        {
+                            this.state.stories.map((story) => {
+                                return(
+                                    <div key={story._id}>
+                                        <div className="card">
+                                            <div className="card-header">
+                                                <Link to={`/stories/public/${story._id}`} >Stories</Link>
+                                                <button type="button" className="btn btn-outline-success" onClick={() => {this.handleFollow(story.user)}}>Follow</button>
                                             </div>
-                                        )
-                                    })
-                                }
-                            </ul>
-                        </div>
-                    </div>
+                                            <div className="card-body">
+                                                <h5 className="card-title">{story.title}</h5>
+                                                <p className="card-text">{story.body}</p>
+                                                {/* <Link to={`/stories/${story._id}`} className="btn btn-outline-success">Go to story</Link> */}
+                                                {/* <Link className="btn btn-outline-success" onClick={() => {this.handleBookmark(story._id)}}>Bookmark</Link> */}
+                                                <button type="button" className="btn btn-outline-success" onClick={() => {this.handleBookmark(story._id)}}>Bookmark</button>
+                                            </div>
+                                        </div><br/>
+                                    </div>
+                                )
+                            })
+                        }
+                    </ul>
                 </div>
             </div>
         )
