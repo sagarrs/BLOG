@@ -72,7 +72,7 @@ class ShowStory extends React.Component{
                 <p>Topic - {this.state.story.topicName}</p>
                 <p>Tags - {this.state.story.tagName}</p>
                 <div>
-                    <img src={this.state.story.previewImageUrl} />
+                    <img style={{width: 850, height: 400}} src={`http://localhost:3005/${this.state.story.previewImageUrl}`} />
                 </div>
 
                 <div>

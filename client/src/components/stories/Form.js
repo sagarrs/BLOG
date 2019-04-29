@@ -39,7 +39,7 @@ class Form extends React.Component{
 
    handleBody = ( ( event, editor ) => {
         console.log("body")
-        const data = editor.getData();
+        const data = editor.getData()
         console.log(data)
         this.setState(() => ({
             body: data
@@ -107,16 +107,25 @@ class Form extends React.Component{
         formData.append('topicName', this.state.topicName)
         formData.append('tagName', this.state.tagName)
         formData.append('previewImageUrl', this.state.previewImageUrl, this.state.previewImageUrl.name)
-
-        this.props.handleSubmit(formData, topicData, tagData)
+        
+        console.log(formData.get("body"))
+        // this.props.handleSubmit(formData, topicData, tagData)
     }
 
     render(){
         const options = [
-            { value: 'react', label: 'React' },
-            { value: 'vue', label: 'Vue' },
-            { value: 'angular', label: 'Angular' }
+            { value: 'home', label: 'Home' },
+            { value: 'culture', label: 'Culture' },
+            { value: 'startup', label: 'Startup' },
+            { value: 'health', label: 'Health' },
+            { value: 'tech', label: 'Tech' },
+            { value: 'design', label: 'Design' },
+            { value: 'politics', label: 'Politics' },
+            { value: 'art', label: 'Art' },
+            { value: 'books', label: 'Books' },
+            { value: 'fiction', label: 'Fiction' }
           ]
+
         return(
             <div>
                 <h1>Form</h1>
