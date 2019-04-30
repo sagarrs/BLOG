@@ -2,6 +2,8 @@ import React from 'react'
 import axios from '../../config/axios'
 import {Redirect} from 'react-router-dom'
 
+import "../../App.css"
+
 class Login extends React.Component{
     constructor(props){
         super(props)
@@ -68,23 +70,61 @@ class Login extends React.Component{
         }
         return(
             <div>
-                <h1>Login here</h1>
                 {this.state.notice && <p>{this.state.notice}</p>}
-                <form onSubmit={this.handleSubmit}>
+                <div>
+                    <div className="container">
+                        <div id="login-row" className="row justify-content-center align-items-center">
+                            <div id="login-column" className="col-md-6">
+                                <div id="login-box" className="col-md-12 card">
+                                    <form onSubmit={this.handleSubmit} className="form">
+                                        <h3 className="text-center text-success">Login</h3>
+                                        <div className="form-group">
+                                            <label className="text-success">Email:</label><br/>
+                                            <input type="text" className="form-control" value={this.state.email} name="email" onChange={this.handleChange}/>
+                                        </div>
+                                        <div className="form-group">
+                                            <label className="text-success">Password:</label><br/>
+                                            <input type="password" className="form-control" value={this.state.password} name="password" onChange={this.handleChange}/>
+                                        </div>
+                                        <div className="form-group">
+                                            <label className="text-success">
+                                                <span>Remember me</span> <span>
+                                                    <input id="remember-me" name="remember-me" type="checkbox"/>
+                                                </span>
+                                            </label><br/>
+                                            <input type="submit" name="submit" className="btn btn-outline-success" value="submit"/>
+                                        </div>
+                                        {/* <div id="register-link" className="text-right">
+                                            <a href="/" className="btn btn-outline-success">Register here</a>
+                                        </div> */}
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                {/* <form onSubmit={this.handleSubmit}>
                     <label>
                         email:
-                        <input type="text" value={this.state.email} name="email" onChange={this.handleChange}/>
+                        <input type="text" className="form-control" value={this.state.email} name="email" onChange={this.handleChange}/>
+                    </label><br/>
+                    
+                    <label className="text-success">Email:
+                        <input type="text" className="form-control" value={this.state.email} name="email" onChange={this.handleChange}/>
+                    </label><br/> 
+
+                    <label className="text-success">
+                        Password:
+                        <input type="password" className="form-control" value={this.state.password} name="password" onChange={this.handleChange}/>
                     </label><br/>
 
                     <label>
-                        password:
-                        <input type="password" value={this.state.password} name="password" onChange={this.handleChange}/>
-                    </label><br/>
-
-                    <label>
-                        <input type="submit" />
+                        <input type="submit" className="btn btn-outline-success" />
                     </label>
-                </form>
+                </form> */}
+
             </div>
         )
     }

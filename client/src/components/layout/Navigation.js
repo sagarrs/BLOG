@@ -1,5 +1,5 @@
 import React from 'react'
-import {Nav, Navbar, Badge} from 'react-bootstrap'
+import {Nav, Navbar, Badge, NavDropdown} from 'react-bootstrap'
 import '../../App.css'
 
 class Navigation extends React.Component{
@@ -34,18 +34,25 @@ class Navigation extends React.Component{
             <Nav>
               <div style={linkTab}>
                 {
-                  this.props.handleAuth && <Nav.Link eventKey={2} href="/logout">Logout
+                  this.props.handleAuth && <Nav.Link eventKey={2} href="/logout" className="text-success">Logout
                                             <Badge pill variant="dark">1</Badge></Nav.Link>
                 }
                 {
                   !this.props.handleAuth && (
                     <div>
-                      <Nav.Link style={navStyle} href="/login">Login</Nav.Link>
-                      <Nav.Link className="btn btn-outline-success" style={navStyle} href="/register">Get Bloggin</Nav.Link>
+                      <Nav.Link style={navStyle} href="/login" className="text-success">Login</Nav.Link>&nbsp;&nbsp;
+                      <Nav.Link className="btn btn-outline-success text-success" style={navStyle} href="/register">Get Bloggin</Nav.Link>
                     </div>
                   )
                 }
               </div>
+              {/* <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
+                <NavDropdown.Item href="">Action</NavDropdown.Item>
+                <NavDropdown.Item href="">Another action</NavDropdown.Item>
+                <NavDropdown.Item href="">Something</NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item href="">Separated link</NavDropdown.Item>
+              </NavDropdown> */}
             </Nav>
         </Navbar.Collapse>
       </Navbar>

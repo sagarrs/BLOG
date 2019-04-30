@@ -78,7 +78,8 @@ class App extends Component {
               return(
                 <div>
                   <p>you have successfully logged out</p>
-                  <Home/>
+                  {/* <Home/> */}
+                  <Link to="/" className="btn btn-outline-success">Redirect To Home</Link>
                 </div>
               )
             }} />
