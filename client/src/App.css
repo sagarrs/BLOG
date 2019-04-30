@@ -9,10 +9,21 @@
 }
 
 .tabs{
-  color: grey
+  color: black
 }
 
 .home-img{
-  height: 200px;
-  width: 450px;
+  height: 350px;
+  width: 700px;
+  padding-left: 50px;
 }
+
+.card-top{
+  padding: 40px;
+}
+
+.card{
+  padding: 20px;
+}
+
+/* navigation */

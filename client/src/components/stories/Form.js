@@ -109,7 +109,7 @@ class Form extends React.Component{
         formData.append('previewImageUrl', this.state.previewImageUrl, this.state.previewImageUrl.name)
         
         console.log(formData.get("body"))
-        // this.props.handleSubmit(formData, topicData, tagData)
+        this.props.handleSubmit(formData, topicData, tagData)
     }
 
     render(){

@@ -78,7 +78,7 @@ class ShowStory extends React.Component{
                 <div>
                     <form onSubmit={this.handleSubmit}>
                         <label>
-                            Body: 
+                            Responses: 
                             {/* <textarea value={this.state.body} className="form-control" rows="5" onChange={this.handleBody}></textarea> */}
                             <CKEditor
                                 editor={ ClassicEditor }
