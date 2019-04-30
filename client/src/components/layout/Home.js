@@ -57,13 +57,9 @@ class Home extends React.Component{
     }
 
     render(){
-        // const tabs = {
-        //     color: 'grey',
-        //   };
-        // const headFont = {
-        //     fontFamily: "Lucida Console",
-        //     fontWeight: "bold"
-        // };
+        const tabs = {
+            color: 'grey',
+          };
 
         return(
             <div>
@@ -88,15 +84,15 @@ class Home extends React.Component{
                         {
                             this.state.stories.map((story) => {
                                 return(
-                                    <div key={story._id}>
+                                    <div key={story._id} className="card-top">
                                         <div className="card">
                                             <div className="card-header">
-                                                <Link to={`/stories/public/${story._id}`} >Read Stories</Link>
+                                                <Link className="tabs" to={`/stories/public/${story._id}`} >Read Story</Link>
                                                 <button type="button" style={{float: "right"}} className="btn btn-outline-success" onClick={() => {this.handleFollow(story.user)}}>Follow</button>
                                             </div>
                                             <div className="card-body">
                                                 <h5 className="card-title">{story.title}</h5>
-                                                <p className="card-text">{story.body}</p>
+                                                <p className="card-text" style={{color: 'grey'}}>{story.body}</p>
                                                 <img className="home-img" src={`http://localhost:3005/${story.previewImageUrl}`} /><br/><br/>
                                                 {/* <Link to={`/stories/${story._id}`} className="btn btn-outline-success">Go to story</Link> */}
                                                 {/* <Link className="btn btn-outline-success" onClick={() => {this.handleBookmark(story._id)}}>Bookmark</Link> */}
