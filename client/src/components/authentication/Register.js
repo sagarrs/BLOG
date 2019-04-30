@@ -57,11 +57,11 @@ class Register extends React.Component{
         axios.post("/users/register", formData)
             .then((user) => {
                 console.log("Success", user)
-                this.props.history.push("/login")
                 this.setState(() => ({
                     username: "", email: "", password: "",
                     notice: "successfully registered taking you to login screen"
                 }))
+                this.props.history.push("/login")
             })
             .catch((err) => {
                 console.log("Some Error", err)
