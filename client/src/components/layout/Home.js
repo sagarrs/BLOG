@@ -87,11 +87,10 @@ class Home extends React.Component{
                                     <div key={story._id} className="card-top">
                                         <div className="card">
                                             <div className="card-header">
-                                                <Link className="tabs" to={`/stories/public/${story._id}`} >Read Story</Link>
+                                                <Link className="tabs" to={`/stories/public/${story._id}`} >{story.title}</Link>
                                                 <button type="button" style={{float: "right"}} className="btn btn-outline-success" onClick={() => {this.handleFollow(story.user)}}>Follow</button>
                                             </div>
                                             <div className="card-body">
-                                                <h5 className="card-title">{story.title}</h5>
                                                 <p className="card-text" style={{color: 'grey'}}>{story.body}</p>
                                                 <img className="home-img" src={`http://localhost:3005/${story.previewImageUrl}`} /><br/><br/>
                                                 {/* <Link to={`/stories/${story._id}`} className="btn btn-outline-success">Go to story</Link> */}

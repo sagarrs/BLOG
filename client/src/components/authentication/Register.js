@@ -72,8 +72,36 @@ class Register extends React.Component{
         return(
             <div>
                 {this.state.notice && <p>{this.state.notice}</p>}
-                <h1>Register with us</h1>
-                <form onSubmit={this.handleSubmit}>
+                <div>
+                    <div className="container">
+                        <div id="login-row" className="row justify-content-center align-items-center">
+                            <div id="login-column" className="col-md-6">
+                                <div id="login-box" className="col-md-12 card">
+                                    <form onSubmit={this.handleSubmit} className="form">
+                                        <h3 className="text-center text-success">Register</h3>
+                                        <div className="form-group">
+                                            <label className="text-success">Username:</label><br/>
+                                            <input type= "text" className="form-control" value = {this.state.username} name="username" onChange={this.handleChange}/>
+                                        </div>
+                                        <div className="form-group">
+                                            <label className="text-success">Email:</label><br/>
+                                            <input type= "text" className="form-control" value={this.state.email} name="email" onChange={this.handleChange} />
+                                        </div>
+                                        <div className="form-group">
+                                            <label className="text-success">Password:</label><br/>
+                                            <input type= "password" className="form-control" value={this.state.password} name="password" onChange={this.handleChange} />
+                                        </div>
+                                        <div className="form-group">
+                                            <input type="submit" name="submit" className="btn btn-outline-success" value="submit"/>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* <form onSubmit={this.handleSubmit}>
                     <label>
                         username:
                         <input type= "text" value = {this.state.username} name="username" onChange={this.handleChange}/>
@@ -89,7 +117,10 @@ class Register extends React.Component{
                     <label>
                         <input type="Submit" />
                     </label><br/>
-                </form>
+                </form> */}
+
+
+
             </div>
         )
     }
