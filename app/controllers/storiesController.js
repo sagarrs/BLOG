@@ -148,8 +148,24 @@ router.get("/public/:id", (req, res) => {
 router.delete("/:id", authenticateUser, (req, res) => {
     const id = req.params.id
 
+    console.log("this is tag name")
+    console.log(req.body.tagName)
+    console.log(id)
+
     Story.findOneAndDelete({user: req.user._id, _id: id})
         .then((contact) => {
+
+            // Tags.update({
+            //     tagName: req.body.tagName
+            // }, {
+            //     $pull: {
+            //         stories: id
+            //     }
+            // }).exec(function(err, user){
+            //     console.log("successssssssssssss");
+            // })
+
+
             res.status("200").send({notice: "story successfully deleted"})
         })
         .catch((err) => {

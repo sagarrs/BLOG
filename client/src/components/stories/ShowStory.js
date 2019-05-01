@@ -48,26 +48,16 @@ class ShowStory extends React.Component{
             axios.get(`/tags`)
             .then((response) => {
                 // console.log(response.data)
+                // let obj = response.data.find(o => o.stories === id)
 
-                const x = response.data.filter(function(subarray) {
-                        return subarray.stories.filter(function(story) {
-                            return story == id
-                        })
-                    })
-                
-                // const result = response.data.map(function(ele){
-                //     console.log(ele)
+                // const result = response.data.find(function(ele){
                 //     return ele
                 // })
-                
-                // console.log("-------------------------------------")
                 // console.log(result)
 
-                //   scores.map(function(subarray) {
-                //     return subarray.map(function(number) {
-                //       return number * 3;
-                //     })
-                //   })
+                // let obj = result.stories.find(o => o === id)
+                // console.log(obj)
+
             })
             .catch((err) => {
                 console.log(err)

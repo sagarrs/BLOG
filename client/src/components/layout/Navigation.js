@@ -21,7 +21,7 @@ class Navigation extends React.Component{
 
     return(
       <div>
-        <Navbar collapseOnSelect expand="lg" bg="" variant="light">
+        <Navbar className="shadow p-3 mb-5 bg-white rounded" collapseOnSelect expand="lg" bg="" variant="light">
           <Navbar.Brand href="/" style={heroTab}>Blogge-R-etard</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
