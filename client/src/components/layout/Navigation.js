@@ -32,10 +32,26 @@ class Navigation extends React.Component{
             </Nav>
             
             <Nav>
+              {/* <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
+                  <div className="container-fluid well span6">
+                    <div className="row-fluid">
+                          <div className="span2" >
+                          <img src="https://secure.gravatar.com/avatar/de9b11d0f9c0569ba917393ed5e5b3ab?s=140&r=g&d=mm" className="img-circle"/>
+                          </div>
+                          
+                          <div className="span8">
+                            <NavDropdown.Item>Sagar</NavDropdown.Item>
+                            <NavDropdown.Item>sagar@servidor.com</NavDropdown.Item>
+                            <NavDropdown.Item>software engineer</NavDropdown.Item>
+                            <NavDropdown.Item>bangalore</NavDropdown.Item>
+                          </div>
+                    </div>
+                  </div>
+              </NavDropdown> */}
+
               <div style={linkTab}>
                 {
-                  this.props.handleAuth && <Nav.Link eventKey={2} href="/logout" className="text-success">Logout
-                                            <Badge pill variant="dark">1</Badge></Nav.Link>
+                  this.props.handleAuth && <Nav.Link eventKey={2} href="/logout" className="text-success">Logout</Nav.Link>
                 }
                 {
                   !this.props.handleAuth && (
@@ -46,13 +62,6 @@ class Navigation extends React.Component{
                   )
                 }
               </div>
-              {/* <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
-                <NavDropdown.Item href="">Action</NavDropdown.Item>
-                <NavDropdown.Item href="">Another action</NavDropdown.Item>
-                <NavDropdown.Item href="">Something</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="">Separated link</NavDropdown.Item>
-              </NavDropdown> */}
             </Nav>
         </Navbar.Collapse>
       </Navbar>

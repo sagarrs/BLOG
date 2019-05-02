@@ -97,14 +97,43 @@ class ShowStory extends React.Component{
                             />
                         </label><br/>
 
-                        <input type="Submit" className="btn btn-outline-success"/>
+                        <input type="Submit" className="btn btn-outline-success"/><br/><br/>
                     </form>
                 </div>
                 
                 <div>
-                    Responses - {this.state.responses.map((response) => {return <p key={response._id}>{response.body}</p>})}
+
+                    {this.state.responses.map((response) => {return (
+                        <div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid"/>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <p>
+                                                <a class="float-left" href="https://maniruzzaman-akash.blogspot.com/p/contact.html"><strong>Maniruzzaman Akash</strong></a>
+                                                <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+                                                <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+                                                <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+                                                <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+
+                                        </p>
+                                        <div class="clearfix"></div>
+                                            <p key={response._id}>{response.body}</p>
+                                            <p>
+                                                <a class="float-right btn btn-outline-primary ml-2"> <i class="fa fa-reply"></i> Reply</a>
+                                                <a class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i> Like</a>
+                                        </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><br/>
+                        </div>
+                    )})}
                 </div>
-                <Link to="/">BACK</Link>
+                <Link to="/" className="btn btn-outline-success">BACK</Link><br/><br/>
             </div>
         )
     }
