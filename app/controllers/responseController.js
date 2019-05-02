@@ -36,6 +36,13 @@ router.post("/", authenticateUser, (req, res) => {
         })
 })
 
+// router.post("/", (req, res) => {
+//     res.send("hi")
+//     Story.findById(user.id // from auth user)
+// })
+
 module.exports = {
     responseRouter : router
 }
+
+// router.post to story here directly no need of moodels
