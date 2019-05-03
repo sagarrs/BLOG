@@ -21,7 +21,6 @@ class Home extends React.Component{
         .catch((err) => {
             console.log(err)
         })
-        
     }
 
     handleBookmark = (storyId) => {

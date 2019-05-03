@@ -1,5 +1,5 @@
 const mongoose = require("mongoose")
-
+const {responseSchema} = require("../models/response")
 const Schema = mongoose.Schema
 
 const storySchema = new Schema({
@@ -34,9 +34,7 @@ const storySchema = new Schema({
     tagName: [
 
     ],
-    responses: [
-
-    ],
+    responses: [responseSchema],
     claps: [
         {
             user:{

@@ -10,8 +10,7 @@ class ShowStory extends React.Component{
         super()
         this.state = {
             story: {},
-            data: "",
-            responses: []
+            data: ""
         }
     }
 
@@ -21,16 +20,6 @@ class ShowStory extends React.Component{
             .then((response) => {
                 this.setState(() => ({
                     story: response.data
-                }))
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-        
-        axios.get(`/response`)
-            .then((response) => {
-                this.setState(() => ({
-                    responses: response.data
                 }))
             })
             .catch((err) => {
@@ -47,10 +36,11 @@ class ShowStory extends React.Component{
 
     } )
 
-    handleSubmit = (e) => {
-        e.preventDefault()
+    handleSubmit = (id) => {
+        // e.preventDefault()
         const formData = {
-            data: this.state.data
+            data: this.state.data,
+            id: id
         }
         console.log(formData)
 
@@ -65,18 +55,21 @@ class ShowStory extends React.Component{
     }
 
     render(){
+        console.log(this.state.story.responses)
         return(
             <div>
                 <p>Title - {this.state.story.body}</p>
                 <p>Body - {this.state.story.body}</p>
                 <p>Topic - {this.state.story.topicName}</p>
                 <p>Tags - {this.state.story.tagName}</p>
+                
+                {/* Comments = {this.state.story.responses && this.state.story.responses.map(response => <p key={response._id}>{response.body}</p> )} */}
                 <div>
                     <img style={{width: 850, height: 400}} src={`http://localhost:3005/${this.state.story.previewImageUrl}`} /><br/>
                 </div>
 
                 <div>
-                    <form onSubmit={this.handleSubmit}>
+                    <form>
                         <label>
                             Responses: 
                             {/* <textarea value={this.state.body} className="form-control" rows="5" onChange={this.handleBody}></textarea> */}
@@ -97,13 +90,12 @@ class ShowStory extends React.Component{
                             />
                         </label><br/>
 
-                        <input type="Submit" className="btn btn-outline-success"/><br/><br/>
+                        <input type="button" className="btn btn-outline-success" value="submit" onClick={() => {this.handleSubmit(this.state.story._id)}}/><br/><br/>
                     </form>
                 </div>
                 
                 <div>
-
-                    {this.state.responses.map((response) => {return (
+                    {this.state.story.responses && this.state.story.responses.map(response => 
                         <div>
                             <div class="card">
                                 <div class="card-body">
@@ -130,8 +122,8 @@ class ShowStory extends React.Component{
                                     </div>
                                 </div>
                             </div><br/>
-                        </div>
-                    )})}
+                        </div> 
+                    )}
                 </div>
                 <Link to="/" className="btn btn-outline-success">BACK</Link><br/><br/>
             </div>
