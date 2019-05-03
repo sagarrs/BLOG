@@ -15,8 +15,8 @@ const responseSchema = new Schema({
     }
 })
 
-const Response = mongoose.model("Response", responseSchema)
+// const Response = mongoose.model("Response", responseSchema)
 
 module.exports = {
-    Response
+    responseSchema
 }

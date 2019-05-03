@@ -6,33 +6,41 @@ const {authenticateUser} = require("../middlewares/authenticate")
 
 // CRUD routes
 
-router.get("/", (req, res) => {
-    Response.find()
-        .then((response) => {
-            res.status("200").send(response)
-        })
-        .catch((err) => {
-            console.log(err)
-        })
-})
+// router.get("/", (req, res) => {
+//     Response.find()
+//         .then((response) => {
+//             res.status("200").send(response)
+//         })
+//         .catch((err) => {
+//             console.log(err)
+//         })
+// })
 
 router.post("/", authenticateUser, (req, res) => {
 
-    const response = new Response({
-        user: req.user._id,
-        body: req.body.data
-    })
-
     console.log("--------this is response controller---------------")
-    console.log(req.user._id)
+    // console.log(req.user._id)
     console.log(req.body.data)
+    console.log(req.body.id)
 
-    response.save()
-        .then((response) => {
-            res.status("200").send(response)
+    Story.findById({_id: req.body.id})
+        .then((story) => {
+            console.log("this is story")
+
+            const response = {user: req.user.id, body: req.body.data}
+            console.log(response)
+
+            story.responses.push(response)
+            story.save()
+                .then((resp) => {
+                    console.log(resp)
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
         })
         .catch((err) => {
-            res.status("401").send(err)
+            console.log(err)
         })
 })
 

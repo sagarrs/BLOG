@@ -127,9 +127,6 @@ router.get("/:id", authenticateUser, (req, res) => {
 router.get("/public/:id", (req, res) => {
     const id = req.params.id
 
-    console.log("this is stories controller")
-    console.log(id)
-
     Story.findOne({_id: id})
         // .populate('user')
         .then((story) => {
