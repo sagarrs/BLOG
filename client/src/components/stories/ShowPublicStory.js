@@ -96,27 +96,27 @@ class ShowStory extends React.Component{
                 
                 <div>
                     {this.state.story.responses && this.state.story.responses.map(response => 
-                        <div>
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-2">
-                                            <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid"/>
+                        <div key={response._id}>
+                            <div className="card" style={{width: 850}}>
+                                <div className="card-body">
+                                    <div className="row">
+                                        <div className="col-md-2">
+                                            <img src="https://image.ibb.co/jw55Ex/def_face.jpg" className="img img-rounded img-fluid"/>
                                         </div>
-                                        <div class="col-md-10">
+                                        <div className="col-md-10">
                                             <p>
-                                                <a class="float-left" href="https://maniruzzaman-akash.blogspot.com/p/contact.html"><strong>Maniruzzaman Akash</strong></a>
-                                                <span class="float-right"><i class="text-warning fa fa-star"></i></span>
-                                                <span class="float-right"><i class="text-warning fa fa-star"></i></span>
-                                                <span class="float-right"><i class="text-warning fa fa-star"></i></span>
-                                                <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+                                                <a className="float-left" href="https://maniruzzaman-akash.blogspot.com/p/contact.html"><strong>Maniruzzaman Akash</strong></a>
+                                                <span className="float-right"><i className="text-warning fa fa-star"></i></span>
+                                                <span className="float-right"><i className="text-warning fa fa-star"></i></span>
+                                                <span className="float-right"><i className="text-warning fa fa-star"></i></span>
+                                                <span className="float-right"><i className="text-warning fa fa-star"></i></span>
 
                                         </p>
-                                        <div class="clearfix"></div>
+                                        <div className="clearfix"></div>
                                             <p key={response._id}>{response.body}</p>
                                             <p>
-                                                <a class="float-right btn btn-outline-primary ml-2"> <i class="fa fa-reply"></i> Reply</a>
-                                                <a class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i> Like</a>
+                                                <a className="float-right btn btn-outline-primary ml-2"> <i className="fa fa-reply"></i> Reply</a>
+                                                <a className="float-right btn text-white btn-danger"> <i className="fa fa-heart"></i> Like</a>
                                         </p>
                                         </div>
                                     </div>
